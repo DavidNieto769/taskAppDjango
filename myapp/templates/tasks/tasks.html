@@ -1,0 +1,88 @@
+{%extends 'layouts/base.html'%}
+
+{%block content%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tasks</title>
+    <link rel="stylesheet" href="/myapp/static/styles/tasks.css">
+</head>
+
+<body style="background: #1f1c62;">
+    
+<h1 style="font: size 20px; color: white">Tasks</h1>
+<p style="color: white">click on the task's name to edit the task</p>
+<div style="float: left;
+width: 45%;
+border-radius: 32px;
+background: #9b9cee;
+  box-shadow: 20px 20px 43px #8985cd, -20px -20px 43px #3d4195;">
+    <h3 style="text-align: center">Pending Tasks</h3>
+    <p>In this section you will see the pending tasks</p>
+    {% for task in tasks %}
+    {%if task.done == False %}
+    <div class="card" style="margin-bottom: 5px;">
+        <h5 class="card-header">{{task.project.name}}</h5>
+        <div class="card-body">
+            <a style="text-decoration:none;" href="{%url 'update_task' task.id %}">
+                {% if task.important %}
+                <h3 class="fw-bold text-success card__title">🕐{{task.title}}</h3> 
+                {%else%}
+                <h3 class="fw-bold card__title">🕐{{task.title}}</h3>
+                {%endif%}
+                </a>
+              <p class="card-text">{{task.description}}</p>
+              <p class="card-text"> Created: {{task.created}}</p>
+              <form action="{% url 'complete_task' task.id %}" method="POST">
+                {% csrf_token %}
+                <button class="btn btn-primary">Done ✅</button>
+            </form>
+            <form action="{%url 'delete_task' task.id %}" method="POST">
+                {% csrf_token %}
+                <button class="btn btn-danger">Delete</button>
+            </form>
+        </div>
+    </div>
+    {%endif%}
+    {%endfor%}
+</div>
+
+<div style="float: right; width: 50%;border-radius: 32px;
+ background: #9b9cee;
+  box-shadow: 20px 20px 43px #8985cd, -20px -20px 43px #3d4195">
+    <h3 style="text-align: center;">Done Tasks</h3>
+    <p>In this section you will see the done tasks</p>
+    {% for task in tasks %}
+    {%if task.done%}
+    <div class="card" style="margin-bottom: 5px;">
+        <h5 class="card-header">{{task.project.name}}</h5>
+        <div class="card-body">
+         <a class="card-title" style="text-decoration:none;" href="{%url 'update_task' task.id %}">
+            {% if task.important %}
+            <h3 class="fw-bold text-success card__title">✅{{task.title}}</h3> 
+            {%else%}
+            <h3 class="fw-bold">✅{{task.title}}</h3>
+            {%endif%}
+            </a>
+          <p class="card-text">{{task.description}}</p>
+          <p class="card-text">Done: {{task.datecompleted}}</p>
+          <form action="{%url 'delete_task' task.id %}" method="POST">
+            {% csrf_token %}
+            <button class="btn btn-danger">Delete</button>
+        </form>
+        </div>
+      </div>    
+    {%endif%}
+    {% endfor %}
+</div>
+
+</body>
+</html>
+
+
+
+
+
+{% endblock %}

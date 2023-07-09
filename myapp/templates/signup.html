@@ -1,0 +1,39 @@
+{% extends "layouts/base.html"%}
+{%block content%}
+
+<main class="container">
+    <body style="background: #1f1c62;">
+        <div class="col-md-2 offset-md-4 mt-5" style="
+        margin: 0px auto;
+        width: 50%;
+        border-radius: 32px;
+        background: #9b9cee;
+        box-shadow: 20px 20px 43px #8985cd, -20px -20px 43px #878ce9;">
+            <div class="row">
+                <div class="col-md-7 offset-md-3">
+                    <form method="POST" class="card card-body">
+                        <h1 class="text-center">sign up</h1>
+                        <h1>{{error}}</h1>
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label for="username">Username:</label>
+                            <input type="text" name="username" id="username" class="form-control" placeholder="Enter your username">
+                        </div>
+                        <div class="mb-3">
+                            <label for="password1" >Password:</label>
+                            <input type="password" name="password1" id="password1" class="form-control" placeholder="Enter your password">
+                        </div>
+                        <div class="mb-3">
+                            <label for="password2">Confirm your password:</label>
+                            <input type="password" name="password2" id="password2" class="form-control" placeholder="Confirm your password">
+                        </div>
+                        <button class="btn btn-primary">
+                            signup
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </body>
+</main>
+{%endblock%}

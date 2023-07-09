@@ -1,0 +1,49 @@
+body{
+    background: #202020;
+    color: whitesmoke;
+}
+.navbar {
+    background: #404040;
+    padding: 5px 10px;
+}
+.navbar ul {
+    display: flex;
+    justify-content: space-between;
+}
+.navbar ul li {
+    list-style-type: none;
+}
+
+.navbar ul li a { 
+    color: white;
+    text-decoration: none;
+}
+
+.navbar ul li a:hover {
+    color: #60aae6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 10px 10px;
+} 
+.card {
+    background: whitesmoke;
+    color : black;
+    padding: 10px;
+    margin-bottom: 2px;
+
+}
+.input{
+    background:white;
+    padding: 10px;
+    text-align: center;
+    display: block;
+}
+.articulo_task h2 a{
+    text-decoration: none;   
+}
+.articulo_task h2 a:hover{
+    color : rgba(0, 125, 170, 0.667)
+}
